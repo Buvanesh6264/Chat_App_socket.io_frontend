@@ -1,0 +1,68 @@
+.main-content {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: #0a0a0a;
+}
+
+/* When navbar is hidden (login/register pages) */
+.main-content.no-navbar {
+  min-height: 100vh !important;
+  padding-top: 0 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .main-content {
+    min-height: calc(100vh - 60px);
+  }
+  
+  .main-content.no-navbar {
+    min-height: 100vh !important;
+  }
+  
+  .auth-container {
+    padding: 15px !important;
+  }
+}
+
+/* Ensure full width for all pages */
+.container, .container-fluid, .row, .col, [class*="col-"] {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Remove any leftover Bootstrap padding */
+.mx-auto {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.px-3 {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+.px-lg-4 {
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+}
+
+/* Smooth page transitions */
+.page-transition {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
