@@ -1,15 +1,19 @@
 import { useState, useEffect } from 'react';
-import { Form, Button, Card, Container, Row, Col, Alert } from 'react-bootstrap';
+import { Form, Button, Card, Alert, InputGroup } from 'react-bootstrap';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser, clearError } from '../../redex/saga/store';
 import '../AuthStyles.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const Login = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
+  
+  const [showPassword, setShowPassword] = useState(false);
   
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -41,6 +45,10 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(loginUser(formData));
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -82,16 +90,56 @@ const Login = () => {
 
               <Form.Group className="mb-4">
                 <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  required
-                  placeholder="Enter your password"
-                  disabled={loading}
-                />
+                <InputGroup className="position-relative">
+                  <Form.Control
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                    placeholder="Enter your password"
+                    disabled={loading}
+                    className="pe-5" 
+                  />
+                  <div 
+                    className="position-absolute end-0 top-50 translate-middle-y me-3"
+                    style={{ cursor: 'pointer', zIndex: 5 }}
+                    onClick={togglePasswordVisibility}
+                  >
+                    <FontAwesomeIcon 
+                      icon={showPassword ? faEyeSlash : faEye} 
+                      className="text-secondary"
+                      style={{ 
+                        color: showPassword ? '#00d4ff' : '#6c757d',
+                        transition: 'color 0.3s ease'
+                      }}
+                    />
+                  </div>
+                </InputGroup>
               </Form.Group>
+
+              <div className="mb-3 form-check">
+                <input
+                  type="checkbox"
+                  className="form-check-input"
+                  id="rememberMe"
+                  style={{ cursor: 'pointer' }}
+                />
+                <label
+                  className="form-check-label"
+                  htmlFor="rememberMe"
+                  style={{ cursor: 'pointer' }}
+                >
+                  Remember me
+                </label>
+                <Link
+                  to="/forgot-password"
+                  className="text-decoration-none float-end"
+                  style={{ color: '#00d4ff' }}
+                >
+                  Forgot password?
+                </Link>
+              </div>
 
               <Button
                 variant="primary"

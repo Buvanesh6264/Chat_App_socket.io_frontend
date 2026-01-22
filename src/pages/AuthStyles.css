@@ -203,3 +203,108 @@
   color: rgba(255, 255, 255, 0.5) !important;
   font-size: 0.85rem;
 }
+
+/* Style for password field with icon inside */
+.auth-card .form-control.pe-5 {
+  padding-right: 2.5rem !important;
+}
+
+/* Hover effect for password toggle icon */
+.auth-card .position-absolute:hover .fa-eye,
+.auth-card .position-absolute:hover .fa-eye-slash {
+  color: #00d4ff !important;
+}
+
+/* Ensure the icon is clickable and visible */
+.auth-card .position-absolute {
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Remove default InputGroup styling */
+.auth-card .input-group {
+  border: none;
+  background: none;
+}
+
+/* Style the input field itself */
+.auth-card .form-control {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.auth-card .form-control:focus {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: #00d4ff;
+  box-shadow: 0 0 0 0.25rem rgba(0, 212, 255, 0.25);
+  color: #fff;
+}
+
+/* Placeholder styling */
+.auth-card .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Form label styling */
+.auth-card .form-label {
+  color: #fff;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+/* Style for password fields with icons inside */
+.auth-card .form-control.pe-5 {
+  padding-right: 2.5rem !important;
+}
+
+/* Hover effect for password toggle icons */
+.auth-card .position-absolute:hover .fa-eye,
+.auth-card .position-absolute:hover .fa-eye-slash {
+  color: #00d4ff !important;
+}
+
+/* Ensure the icons are clickable and visible */
+.auth-card .position-absolute {
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Remove default InputGroup styling */
+.auth-card .input-group {
+  border: none;
+  background: none;
+}
+
+/* Style the input field itself */
+.auth-card .form-control {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.auth-card .form-control:focus {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: #00d4ff;
+  box-shadow: 0 0 0 0.25rem rgba(0, 212, 255, 0.25);
+  color: #fff;
+}
+
+/* Placeholder styling */
+.auth-card .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Form label styling */
+.auth-card .form-label {
+  color: #fff;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+/* Form text styling */
+.auth-card .form-text {
+  color: rgba(255, 255, 255, 0.6) !important;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}

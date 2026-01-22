@@ -1,5 +1,6 @@
 import { configureStore, createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import chatReducer from './chatSlice';
 
 const API_URL = 'http://localhost:5000';
 
@@ -97,7 +98,8 @@ export const { logout, clearError, setUserFromStorage } = authSlice.actions;
 
 export const store = configureStore({
   reducer: {
-    auth: authSlice.reducer
+    auth: authSlice.reducer,
+    chat: chatReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

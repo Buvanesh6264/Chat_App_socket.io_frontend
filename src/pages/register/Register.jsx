@@ -3,15 +3,15 @@ import {
   Form,
   Button,
   Card,
-  Container,
-  Row,
-  Col,
   Alert,
+  InputGroup
 } from "react-bootstrap";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser, clearError } from "../../redex/saga/store";
 import "../AuthStyles.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -21,6 +21,8 @@ const Register = () => {
     confirmPassword: "",
   });
 
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [validationError, setValidationError] = useState("");
 
   const dispatch = useDispatch();
@@ -86,6 +88,14 @@ const Register = () => {
     dispatch(registerUser(userData));
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
+
   return (
     <div className="auth-container">
       <div className="auth-card-wrapper">
@@ -141,32 +151,65 @@ const Register = () => {
 
               <Form.Group className="mb-3">
                 <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  required
-                  placeholder="Create a strong password"
-                  disabled={loading}
-                />
-                <Form.Text>
-                  Must contain uppercase, lowercase, number, and special
-                  character
+                <InputGroup className="position-relative">
+                  <Form.Control
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                    placeholder="Create a strong password"
+                    disabled={loading}
+                    className="pe-5"
+                  />
+                  <div 
+                    className="position-absolute end-0 top-50 translate-middle-y me-3"
+                    style={{ cursor: 'pointer', zIndex: 5 }}
+                    onClick={togglePasswordVisibility}
+                  >
+                    <FontAwesomeIcon 
+                      icon={showPassword ? faEyeSlash : faEye} 
+                      className="text-secondary"
+                      style={{ 
+                        color: showPassword ? '#00d4ff' : '#6c757d',
+                        transition: 'color 0.3s ease'
+                      }}
+                    />
+                  </div>
+                </InputGroup>
+                <Form.Text className="text-muted">
+                  Must contain uppercase, lowercase, number, and special character
                 </Form.Text>
               </Form.Group>
 
               <Form.Group className="mb-4">
                 <Form.Label>Confirm Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  name="confirmPassword"
-                  value={formData.confirmPassword}
-                  onChange={handleChange}
-                  required
-                  placeholder="Confirm your password"
-                  disabled={loading}
-                />
+                <InputGroup className="position-relative">
+                  <Form.Control
+                    type={showConfirmPassword ? "text" : "password"}
+                    name="confirmPassword"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    required
+                    placeholder="Confirm your password"
+                    disabled={loading}
+                    className="pe-5"
+                  />
+                  <div 
+                    className="position-absolute end-0 top-50 translate-middle-y me-3"
+                    style={{ cursor: 'pointer', zIndex: 5 }}
+                    onClick={toggleConfirmPasswordVisibility}
+                  >
+                    <FontAwesomeIcon 
+                      icon={showConfirmPassword ? faEyeSlash : faEye} 
+                      className="text-secondary"
+                      style={{ 
+                        color: showConfirmPassword ? '#00d4ff' : '#6c757d',
+                        transition: 'color 0.3s ease'
+                      }}
+                    />
+                  </div>
+                </InputGroup>
               </Form.Group>
 
               <Button
